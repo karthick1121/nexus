@@ -1,6 +1,8 @@
 services:
   app:
     build: .
+    env_file:
+      - .env
     expose:
       - "5000"
 
@@ -17,9 +19,9 @@ services:
   db:
     image: postgres:16-alpine
     environment:
-      POSTGRES_DB: nexus
-      POSTGRES_USER: nexus
-      POSTGRES_PASSWORD: nexuspass
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
